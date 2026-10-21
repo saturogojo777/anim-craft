@@ -1,0 +1,16 @@
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Tooling / local previews
+node_modules/
+dist/
+.tmp/
+
+# Logs
+*.log

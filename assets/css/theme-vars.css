@@ -1,0 +1,84 @@
+/* ============================================================================
+   AnimCraft — theme-vars.css
+   ----------------------------------------------------------------------------
+   The design tokens for the whole site, and the same set that every "self-
+   contained" snippet in the gallery is written against.
+
+   Why a shared token file?
+     • Snippets can reference --panel / --ink / --line instead of hard-coding
+       hex values, so they look right on any surface you paste them into.
+     • Adding a third theme is a 20-line copy of one block below.
+     • The preview panel uses the same tokens as the real UI, so what you see
+       is exactly what you copy.
+
+   Swap this file for your own palette — the class names in the copied markup
+   never change.
+   ========================================================================== */
+
+/* ──────────────────────────────── Dark (default) ─────────────────────────── */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces — ordered from furthest back to most raised. */
+  --canvas: #06060a;
+  --canvas-soft: #08080f;
+  --canvas-sunken: #08080e; /* inside preview stages */
+  --panel: #0c0c14;
+  --panel-raised: #11111b;
+  --panel-active: #171723;
+  --header-bg: rgba(7, 7, 12, 0.74);
+  --modal-backdrop: rgba(3, 3, 8, 0.72);
+
+  /* Lines */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+
+  /* Text */
+  --ink: #f4f4fa;
+  --ink-soft: #d3d3e2;
+  --ink-muted: #9a9ab0;
+  --ink-faint: #6b6b83;
+
+  /* Accents */
+  --violet: #8b5cf6;
+  --violet-soft: #b49bff;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+  --green: #34d399;
+  --amber: #fbbf24;
+  --red: #fb7185;
+  --grad: linear-gradient(100deg, #b49bff 0%, #22d3ee 52%, #f472b6 100%);
+  --grad-strong: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ──────────────────────────────────── Light ──────────────────────────────── */
+/* Preview stages intentionally stay dark in both themes: every snippet was
+   composed against a dark canvas, exactly like a design tool's artboard. */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --canvas: #f5f5fa;
+  --canvas-soft: #eeeef6;
+  --canvas-sunken: #08080e;
+  --panel: #ffffff;
+  --panel-raised: #f4f4fa;
+  --panel-active: #e9e9f3;
+  --header-bg: rgba(248, 248, 252, 0.78);
+  --modal-backdrop: rgba(18, 18, 30, 0.42);
+
+  --line: rgba(14, 14, 32, 0.1);
+  --line-strong: rgba(14, 14, 32, 0.18);
+
+  --ink: #101018;
+  --ink-soft: #2a2a3c;
+  --ink-muted: #5b5b73;
+  --ink-faint: #80809a;
+
+  --violet: #7c3aed;
+  --violet-soft: #6d28d9;
+  --grad: linear-gradient(100deg, #7c3aed 0%, #0891b2 50%, #db2777 100%);
+}

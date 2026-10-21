@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Showcase or idea
+    url: https://github.com/saturogojo777/anim-craft/discussions
+    about: Share what you built, or float an idea before coding it.
+  - name: Contributing guide
+    url: https://github.com/saturogojo777/anim-craft/blob/main/CONTRIBUTING.md
+    about: Read this before opening a PR — it takes two minutes.
