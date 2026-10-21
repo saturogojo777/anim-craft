@@ -1,0 +1,62 @@
+name: ✨ Animation request
+description: Suggest an effect you'd love to see in the gallery.
+title: "feat: "
+labels: ["animation request", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Great animations usually start with a reference. A GIF, CodePen, or a
+        sentence describing the motion is plenty — you do not need to write the CSS.
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+      placeholder: Magnetic Button
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Buttons
+        - Loaders
+        - Cards
+        - Hover Effects
+        - Text
+        - Inputs & Controls
+        - Notifications
+        - New category
+    validations:
+      required: true
+  - type: dropdown
+    id: motion
+    attributes:
+      label: Motion type
+      options:
+        - Hover
+        - Loop
+        - Interactive (form controls, toggles)
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What should it do?
+      description: Describe the motion in one or two sentences. Mention the trigger and the feel.
+      placeholder: The button drifts toward the cursor within a small radius, then springs back on mouse-out.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Links to GIFs, CodePens, or sites that already do this well.
+  - type: checkboxes
+    id: offer
+    attributes:
+      label: Would you like to build it?
+      options:
+        - label: I'd like to open a PR for this myself.
+        - label: I'd like guidance on how to implement it.

@@ -1,0 +1,76 @@
+name: 🐛 Bug report
+description: Something looks broken, animates oddly, or copies the wrong code.
+title: "bug: "
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Screenshots and short screen
+        recordings make fixes dramatically faster.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, and what you expected instead.
+      placeholder: The detail dialog's code panel overflows horizontally on my phone when…
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the gallery on a 390 px viewport
+        2. Tap the "Orbit Dots" card
+        3. Switch to the CSS tab
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area?
+      options:
+        - Gallery / cards
+        - Search & filters
+        - Copy buttons
+        - Detail dialog / code viewer
+        - A specific animation
+        - Theme (dark / light)
+        - Accessibility / keyboard
+        - Deployment / GitHub Pages
+    validations:
+      required: true
+  - type: input
+    id: animation
+    attributes:
+      label: Animation ID (if relevant)
+      placeholder: orbit-dots
+  - type: input
+    id: browser
+    attributes:
+      label: Browser & version
+      placeholder: Chrome 129, Safari 18, Firefox 131…
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device / OS
+      placeholder: macOS 15, Windows 11, iPhone 15 (iOS 18)…
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots or recording
+      description: Drag files here or paste links.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues to avoid duplicates.
+          required: true

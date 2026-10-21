@@ -1,0 +1,44 @@
+# Lint the animation catalogue on every pull request and push.
+# Fast (no install) and dependency-free, so it runs well under a minute.
+name: Validate catalogue
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check the catalogue
+        run: node scripts/validate.mjs
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check assets/js/data.js
+          node --check assets/js/app.js
+
+      - name: Check that local asset paths resolve
+        run: |
+          python3 - <<'PY'
+          import re, pathlib, sys
+          root = pathlib.Path('.')
+          html = (root / 'index.html').read_text()
+          missing = []
+          for path in re.findall(r'(?:href|src)="(?!https?:|#|mailto:)([^"]+)"', html):
+              if path.startswith('//'):
+                  continue
+              if not (root / path.split('#')[0].split('?')[0]).exists():
+                  missing.append(path)
+          for path in missing:
+              print(f'Missing asset: {path}')
+          sys.exit(1 if missing else 0)
+          PY

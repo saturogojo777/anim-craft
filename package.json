@@ -1,0 +1,31 @@
+{
+  "name": "anim-craft",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A curated, zero-dependency gallery of modern CSS and Tailwind animations and micro-interactions.",
+  "keywords": [
+    "css",
+    "animations",
+    "tailwindcss",
+    "micro-interactions",
+    "ui",
+    "vanilla-js",
+    "gallery"
+  ],
+  "homepage": "https://saturogojo777.github.io/anim-craft/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saturogojo777/anim-craft.git"
+  },
+  "license": "MIT",
+  "author": "saturogojo777",
+  "scripts": {
+    "dev": "npx --yes serve . --listen 3000",
+    "start": "npx --yes serve . --listen 3000",
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — This animation never arrived · AnimCraft</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#06060a" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <style>
+    /* Page-specific layout only — all tokens come from theme-vars.css. */
+    .lost {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .lost__stage {
+      display: grid;
+      place-items: center;
+      width: 92px;
+      height: 92px;
+      margin-bottom: 26px;
+      border: 1px solid var(--line-strong);
+      border-radius: 26px;
+      background: var(--canvas-sunken);
+      font-size: 34px;
+      animation: lost-float 4s ease-in-out infinite alternate;
+    }
+    .lost h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      font-weight: 680;
+    }
+    .lost p {
+      max-width: 46ch;
+      margin-top: 14px;
+      color: var(--ink-muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .lost__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .lost__hint {
+      max-width: 360px;
+      margin: 34px auto 0;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    @keyframes lost-float {
+      from { transform: translateY(-6px) rotate(-4deg); }
+      to { transform: translateY(6px) rotate(4deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lost__stage { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="lost">
+    <div>
+      <div class="lost__stage" aria-hidden="true">✦</div>
+      <h1>This animation <span class="text-gradient">never arrived.</span></h1>
+      <p>
+        The page you were looking for has exited stage left. It is not in the catalogue —
+        but 31 other animations are waiting for you back on the gallery.
+      </p>
+      <div class="lost__actions">
+        <a class="btn btn--primary" href="./">Back to AnimCraft</a>
+        <a class="btn btn--ghost" href="./#gallery">Browse the gallery</a>
+      </div>
+      <p class="lost__hint">Error 404 · Nothing to see, nothing moving here</p>
+    </div>
+  </main>
+</body>
+</html>

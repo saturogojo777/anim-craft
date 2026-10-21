@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ───────────────────────────── SEO / Social ───────────────────────────── -->
+  <title>AnimCraft — Copy-paste CSS &amp; Tailwind animations</title>
+  <meta name="description" content="AnimCraft is a curated, zero-dependency gallery of modern CSS and Tailwind animations and micro-interactions. Preview it live, copy the code, ship it." />
+  <meta name="theme-color" content="#06060a" />
+  <meta name="color-scheme" content="dark light" />
+  <meta property="og:title" content="AnimCraft — Motion that makes interfaces sing" />
+  <meta property="og:description" content="A curated, zero-dependency gallery of modern CSS &amp; Tailwind animations. Copy-paste ready." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/base.css" />
+
+  <!-- Preload the gallery data + app so the first paint is fast. -->
+  <link rel="preload" href="assets/js/data.js" as="script" />
+  <link rel="preload" href="assets/js/app.js" as="script" />
+</head>
+<body>
+  <!-- ────────────────────────────── SVG icon sprite ───────────────────────── -->
+  <!-- All icons are inline symbols so the project stays 100% dependency-free. -->
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M15 9V6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15H9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 4.5h12v16l-6-4.2-6 4.2z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.3-4.3-2.2-6-2.7m12 5.2v-3.4a3 3 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.3-3.2 4.4 4.4 0 0 0-.1-3.3S17.1 3 14 5a11.6 11.6 0 0 0-6.1 0C4.8 3 3.6 3.3 3.6 3.3a4.4 4.4 0 0 0-.1 3.3A4.7 4.7 0 0 0 2.2 9.8c0 4.6 2.8 5.6 5.5 6a3 3 0 0 0-.8 2.3v3.4"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+    <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="m12 3 9 5v8l-9 5-9-5V8z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-4.6-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.4-8 10-8 10Z"/></symbol>
+    <symbol id="i-spinner" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" /></symbol>
+  </svg>
+
+  <a class="skip-link" href="#gallery">Skip to gallery</a>
+
+  <!-- ──────────────────────────────── Header ──────────────────────────────── -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="AnimCraft home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#brandGrad)" />
+            <path d="M10 21.5 16 9l6 12.5" stroke="#08080d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="16" cy="17.2" r="2.1" fill="#08080d"/>
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#a78bfa"/><stop offset=".55" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="brand__text">Anim<span>Craft</span></span>
+        <span class="brand__version">v1.0</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#gallery">Gallery</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="https://github.com/saturogojo777/anim-craft#readme" target="_blank" rel="noreferrer">Docs</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Switch to light theme" title="Toggle theme">
+          <svg class="icon icon--sun"><use href="#i-sun"/></svg>
+          <svg class="icon icon--moon"><use href="#i-moon"/></svg>
+        </button>
+        <a class="btn btn--ghost btn--sm star-btn" href="https://github.com/saturogojo777/anim-craft" target="_blank" rel="noreferrer">
+          <svg class="icon"><use href="#i-github"/></svg>
+          <span>Star on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ──────────────────────────────── Hero ──────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__aurora" aria-hidden="true">
+        <span class="blob blob--violet"></span>
+        <span class="blob blob--cyan"></span>
+        <span class="blob blob--pink"></span>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Zero dependencies · Copy-paste ready
+          </p>
+
+          <h1 id="hero-title" class="hero__title">
+            Motion that makes<br />
+            <span class="text-gradient">interfaces sing.</span>
+          </h1>
+
+          <p class="hero__lede">
+            A curated gallery of modern CSS &amp; Tailwind animations and micro-interactions.
+            Preview it live, copy what you love, ship it in seconds — no libraries, no build step.
+          </p>
+
+          <!-- Primary search. "/" or ⌘K focuses it from anywhere. -->
+          <form class="search" role="search" onsubmit="return false;">
+            <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <label class="sr-only" for="search-input">Search animations</label>
+            <input
+              id="search-input"
+              class="search__input"
+              type="search"
+              placeholder="Search animations, effects, classes…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="search-hint"
+            />
+            <kbd class="search__kbd" id="search-hint"><span class="kbd-mod">⌘</span>K</kbd>
+            <button class="search__clear icon-btn" type="button" id="search-clear" aria-label="Clear search" hidden>
+              <svg class="icon"><use href="#i-x"/></svg>
+            </button>
+          </form>
+
+          <div class="hero__quick" aria-label="Popular searches">
+            <span>Try</span>
+            <button type="button" class="chip-link" data-search="glow">glow</button>
+            <button type="button" class="chip-link" data-search="spinner">spinner</button>
+            <button type="button" class="chip-link" data-search="card">card</button>
+            <button type="button" class="chip-link" data-search="toggle">toggle</button>
+          </div>
+
+          <dl class="hero__stats">
+            <div><dt>Animations</dt><dd data-count="31">31</dd></div>
+            <div><dt>Categories</dt><dd>7</dd></div>
+            <div><dt>Dependencies</dt><dd class="text-gradient">0</dd></div>
+          </dl>
+        </div>
+
+        <!-- Decorative live preview of the product itself. -->
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero-panel">
+            <div class="hero-panel__bar">
+              <span class="win-dot win-dot--red"></span>
+              <span class="win-dot win-dot--amber"></span>
+              <span class="win-dot win-dot--green"></span>
+              <span class="hero-panel__file">aurora-button.css</span>
+              <span class="live-tag"><span class="live-tag__dot"></span>live</span>
+            </div>
+
+            <div class="hero-panel__stage">
+              <div class="hero-demo">
+                <span class="hero-demo__ring"></span>
+                <button class="hero-demo__btn" type="button" tabindex="-1">Aurora Glow</button>
+              </div>
+              <span class="hero-panel__hint">hover the button</span>
+            </div>
+
+            <div class="hero-panel__code" aria-hidden="true">
+              <div class="code-mini__line"><span class="tok-tag">&lt;button</span> <span class="tok-attr">class</span><span class="tok-punc">=</span><span class="tok-str">"glow-btn"</span><span class="tok-tag">&gt;</span></div>
+              <div class="code-mini__line code-mini__line--in"><span class="tok-text">Aurora Glow</span></div>
+              <div class="code-mini__line"><span class="tok-tag">&lt;/button&gt;</span></div>
+            </div>
+          </div>
+
+          <div class="float-chip float-chip--one">
+            <svg class="icon"><use href="#i-zap"/></svg> 31 animations
+          </div>
+          <div class="float-chip float-chip--two">
+            <svg class="icon"><use href="#i-package"/></svg> 0 dependencies
+          </div>
+          <div class="float-chip float-chip--three">
+            <svg class="icon"><use href="#i-layers"/></svg> CSS + Tailwind
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────── Gallery ─────────────────────────────── -->
+    <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <h2 class="sr-only" id="gallery-title">Animation gallery</h2>
+
+        <!-- Sticky filter toolbar -->
+        <div class="toolbar" id="toolbar">
+          <div class="toolbar__inner">
+            <div class="toolbar__filters">
+              <div class="filter-track" id="filter-track" role="tablist" aria-label="Filter by category">
+                <span class="filter-indicator" id="filter-indicator" aria-hidden="true"></span>
+                <!-- Category pills are rendered by app.js from the data file. -->
+              </div>
+            </div>
+
+            <div class="toolbar__meta">
+              <span class="result-count" id="result-count" role="status" aria-live="polite" aria-atomic="true">31 animations</span>
+              <button class="btn btn--ghost btn--sm favorites-btn" type="button" id="favorites-toggle" aria-pressed="false" title="Show saved animations">
+                <svg class="icon"><use href="#i-bookmark"/></svg>
+                <span>Saved</span>
+                <span class="count-badge" id="favorites-count">0</span>
+              </button>
+              <button class="icon-btn motion-btn" type="button" id="motion-toggle" aria-pressed="false" aria-label="Pause all animations" title="Pause preview animations">
+                <svg class="icon icon--pause"><use href="#i-pause"/></svg>
+                <svg class="icon icon--play"><use href="#i-play"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards are injected here. -->
+        <div class="grid" id="grid" aria-busy="true"></div>
+
+        <!-- Empty / no-results state -->
+        <div class="empty" id="empty-state" hidden>
+          <div class="empty__icon"><svg class="icon"><use href="#i-search"/></svg></div>
+          <h3>No matches — yet.</h3>
+          <p id="empty-text">Try a different keyword, or clear your filters to see the whole collection.</p>
+          <div class="empty__actions">
+            <button class="btn btn--primary btn--sm" type="button" id="empty-reset">Reset filters</button>
+            <a class="btn btn--ghost btn--sm" href="https://github.com/saturogojo777/anim-craft/issues/new?template=animation-request.yml" target="_blank" rel="noreferrer">
+              Request this animation
+            </a>
+          </div>
+        </div>
+
+        <!-- Loading skeleton shown before JS renders the gallery -->
+        <div class="grid grid--skeleton" id="grid-skeleton" aria-hidden="true">
+          <div class="skeleton-card"></div><div class="skeleton-card"></div>
+          <div class="skeleton-card"></div><div class="skeleton-card"></div>
+          <div class="skeleton-card"></div><div class="skeleton-card"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── How it works ──────────────────────────── -->
+    <section class="how" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="how__head">
+          <p class="eyebrow eyebrow--plain"><svg class="icon"><use href="#i-sparkles"/></svg> Developer experience</p>
+          <h2 class="section-title" id="how-title">From “ooh” to shipped in three steps.</h2>
+          <p class="section-lede">No npm install. No Tailwind build required. No lock-in. Just clean code you can own.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num">01</span>
+            <h3>Find it</h3>
+            <p>Search by name, effect, or tag. Filter by category and save the ones you love.</p>
+            <div class="step__art step__art--search" aria-hidden="true">
+              <div class="fake-search"><svg class="icon"><use href="#i-search"/></svg><span></span><span class="fake-kbd">⌘K</span></div>
+              <div class="fake-pill">hover <span>effects</span></div>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__num">02</span>
+            <h3>Copy it</h3>
+            <p>Grab HTML, vanilla CSS, or Tailwind classes with one click — copied straight to your clipboard.</p>
+            <div class="step__art step__art--copy" aria-hidden="true">
+              <div class="fake-code"><i></i><i></i><i></i></div>
+              <button class="fake-copy" type="button" tabindex="-1"><svg class="icon"><use href="#i-check"/></svg> Copied!</button>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__num">03</span>
+            <h3>Ship it</h3>
+            <p>Paste it into any project. Every snippet is self-contained, accessible, and reduced-motion friendly.</p>
+            <div class="step__art step__art--ship" aria-hidden="true">
+              <span class="fake-rocket"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+              <div class="fake-progress"><span></span></div>
+              <span class="fake-label">deployed</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────────────────────────── Footer ──────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta">
+        <div>
+          <p class="eyebrow eyebrow--plain"><svg class="icon"><use href="#i-heart"/></svg> Open source, MIT licensed</p>
+          <h2>Built for the open web.<br /><span class="text-gradient">Made better by you.</span></h2>
+          <p>Found a rough edge? Have an animation worth showing off? Contributions of every size are welcome.</p>
+          <div class="footer-cta__actions">
+            <a class="btn btn--primary" href="https://github.com/saturogojo777/anim-craft/fork" target="_blank" rel="noreferrer">
+              <svg class="icon"><use href="#i-github"/></svg> Fork &amp; contribute
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/saturogojo777/anim-craft/issues" target="_blank" rel="noreferrer">
+              Browse issues <svg class="icon"><use href="#i-arrow-up-right"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <div>
+            <h3>Explore</h3>
+            <a href="#gallery">Gallery</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="https://github.com/saturogojo777/anim-craft#readme" target="_blank" rel="noreferrer">Documentation</a>
+          </div>
+          <div>
+            <h3>Community</h3>
+            <a href="https://github.com/saturogojo777/anim-craft/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">Contributing</a>
+            <a href="https://github.com/saturogojo777/anim-craft/issues/new?template=animation-request.yml" target="_blank" rel="noreferrer">Request an animation</a>
+            <a href="https://github.com/saturogojo777/anim-craft/issues" target="_blank" rel="noreferrer">Report a bug</a>
+          </div>
+          <div>
+            <h3>Project</h3>
+            <a href="https://github.com/saturogojo777/anim-craft/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a>
+            <a href="https://github.com/saturogojo777/anim-craft/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer">Code of Conduct</a>
+            <a href="https://github.com/saturogojo777/anim-craft/stargazers" target="_blank" rel="noreferrer">Stargazers</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> AnimCraft. Crafted with care, zero dependencies.</p>
+        <p class="footer-bottom__hint">
+          <svg class="icon"><use href="#i-keyboard"/></svg>
+          Press <kbd>/</kbd> to search · <kbd>Esc</kbd> to close
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ──────────────────────────────── Modal ───────────────────────────────── -->
+  <dialog class="modal" id="detail-dialog" aria-labelledby="modal-title">
+    <div class="modal__panel" id="modal-panel">
+      <header class="modal__header">
+        <div class="modal__heading">
+          <span class="modal__category" id="modal-category">Buttons</span>
+          <h2 id="modal-title">Aurora Glow Button</h2>
+        </div>
+        <div class="modal__header-actions">
+          <button class="icon-btn" type="button" id="modal-fav" aria-label="Save animation" aria-pressed="false">
+            <svg class="icon"><use href="#i-bookmark"/></svg>
+          </button>
+          <button class="icon-btn" type="button" id="modal-close" aria-label="Close details">
+            <svg class="icon"><use href="#i-x"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="modal__scroll">
+        <div class="modal__preview-wrap">
+          <div class="preview-stage" id="modal-stage">
+            <span class="preview-stage__label">Live preview</span>
+            <div class="preview-stage__content" id="modal-preview"></div>
+          </div>
+
+          <div class="modal__meta">
+            <p class="modal__desc" id="modal-desc"></p>
+            <ul class="tag-list" id="modal-tags"></ul>
+            <div class="modal__details">
+              <span><strong>Difficulty</strong><span id="modal-difficulty">Beginner</span></span>
+              <span><strong>Motion</strong><span id="modal-motion">Hover</span></span>
+              <span><strong>Category</strong><span id="modal-cat-name">Buttons</span></span>
+            </div>
+            <div class="modal__play-row">
+              <button class="btn btn--ghost btn--sm" type="button" id="modal-replay">
+                <svg class="icon"><use href="#i-replay"/></svg> Replay
+              </button>
+              <span class="modal__play-hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> to browse</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal__code-wrap">
+          <div class="code-head">
+            <div class="tabs" role="tablist" aria-label="Code format">
+              <button class="tab is-active" role="tab" type="button" aria-selected="true" data-tab="html">HTML</button>
+              <button class="tab" role="tab" type="button" aria-selected="false" data-tab="css">CSS</button>
+              <button class="tab" role="tab" type="button" aria-selected="false" data-tab="tw">Tailwind</button>
+            </div>
+            <button class="btn btn--primary btn--sm copy-code-btn" type="button" id="modal-copy">
+              <svg class="icon icon--copy"><use href="#i-copy"/></svg>
+              <svg class="icon icon--check"><use href="#i-check"/></svg>
+              <span>Copy HTML</span>
+            </button>
+          </div>
+
+          <div class="code-panel" id="code-panel" role="tabpanel">
+            <pre class="code-block" id="code-block" tabindex="0"><code></code></pre>
+          </div>
+
+          <p class="code-note" id="code-note"></p>
+        </div>
+      </div>
+
+      <footer class="modal__footer">
+        <button class="btn btn--ghost btn--sm" type="button" id="modal-prev">
+          <svg class="icon"><use href="#i-chevron-left"/></svg> Previous
+        </button>
+        <span class="modal__counter" id="modal-counter">1 / 31</span>
+        <button class="btn btn--ghost btn--sm" type="button" id="modal-next">
+          Next <svg class="icon"><use href="#i-chevron-right"/></svg>
+        </button>
+      </footer>
+    </div>
+  </dialog>
+
+  <div class="toast-stack" id="toast-stack" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <noscript>
+    <div class="noscript">AnimCraft needs JavaScript to render its live previews. All snippets live in <code>assets/js/data.js</code> if you prefer to browse the source.</div>
+  </noscript>
+
+  <!-- Data first, then the app. Both are plain classic scripts — no build step. -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
