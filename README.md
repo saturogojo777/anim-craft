@@ -4,6 +4,8 @@ A modern toolkit of **copy-paste CSS & Tailwind animations**, **micro-interactio
 
 > Motion, crafted for the web.
 
+**Live site:** [anim-craft.vercel.app](https://anim-craft.vercel.app)
+
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?logo=tailwindcss&logoColor=white)
